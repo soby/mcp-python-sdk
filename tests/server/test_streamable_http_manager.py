@@ -25,10 +25,7 @@ async def test_run_can_only_be_called_once():
         async with manager.run():
             pass
 
-    assert (
-        "StreamableHTTPSessionManager .run() can only be called once per instance"
-        in str(excinfo.value)
-    )
+    assert "StreamableHTTPSessionManager .run() can only be called once per instance" in str(excinfo.value)
 
 
 @pytest.mark.anyio
@@ -54,10 +51,7 @@ async def test_run_prevents_concurrent_calls():
 
     # One should succeed, one should fail
     assert len(errors) == 1
-    assert (
-        "StreamableHTTPSessionManager .run() can only be called once per instance"
-        in str(errors[0])
-    )
+    assert "StreamableHTTPSessionManager .run() can only be called once per instance" in str(errors[0])
 
 
 @pytest.mark.anyio
@@ -207,3 +201,4 @@ async def test_stateful_session_cleanup_on_exception(running_manager):
     assert (
         not manager._server_instances
     ), "No sessions should be tracked after the only session crashes"
+
